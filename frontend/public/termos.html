@@ -519,8 +519,15 @@ footer[role="contentinfo"] { margin-top: 40px !important; }
 <div class="my-3 mb-lg-5">
 <p>Antes de prosseguir com sua inscrição no concurso público da Secretaria de Estado de Administração Penitenciária do Maranhão, leia atentamente os termos abaixo e confirme o aceite para continuar.</p>
 </div>
+<style>
+/* Mobile: checkbox de aceite acima do texto (texto com largura total) */
+@media (max-width: 768px) {
+  label.termos-aceite { flex-direction: column; gap: 10px !important; }
+  label.termos-aceite > input[type=checkbox] { transform: scale(1.25); margin: 0 0 2px 0; }
+}
+</style>
 <div class="my-4" style="max-width:820px">
-<label style="display:flex;gap:14px;align-items:flex-start;cursor:pointer;font-size:15px;line-height:1.6;color:#212529;padding:20px 22px;background:#f7f9fc;border:1px solid #e2e8f0;border-radius:8px">
+<label class="termos-aceite" style="display:flex;gap:14px;align-items:flex-start;cursor:pointer;font-size:15px;line-height:1.6;color:#212529;padding:20px 22px;background:#f7f9fc;border:1px solid #e2e8f0;border-radius:8px">
 <input id="termos" name="aceito_termos" style="margin-top:3px;width:18px;height:18px;flex-shrink:0;accent-color:#002D4D" type="checkbox" value="1"/>
 <span>Declaro que li e concordo com os termos do edital, assim como aceito como foro para resolução de conflitos a mediação e arbitragem (Lei Federal nº 9.307/1996).</span>
 </label>
