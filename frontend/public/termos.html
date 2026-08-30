@@ -522,8 +522,20 @@ footer[role="contentinfo"] { margin-top: 40px !important; }
 <style>
 /* Mobile: checkbox de aceite acima do texto (texto com largura total) */
 @media (max-width: 768px) {
-  label.termos-aceite { flex-direction: column-reverse; gap: 12px !important; }
-  label.termos-aceite > input[type=checkbox] { transform: scale(1.25); margin: 2px 0 0 0; }
+  label.termos-aceite { flex-direction: column-reverse; gap: 0 !important; padding: 18px 18px !important; }
+  label.termos-aceite > span {
+    text-align: justify;
+    text-justify: inter-word;
+    line-height: 1.55;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    word-break: break-word;
+  }
+  label.termos-aceite > input[type=checkbox] {
+    transform: scale(1.4);
+    margin: 16px 0 0 0 !important;
+    align-self: flex-start;
+  }
 }
 </style>
 <div class="my-4" style="max-width:820px">
