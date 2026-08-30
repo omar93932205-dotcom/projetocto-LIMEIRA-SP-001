@@ -810,6 +810,28 @@ h2.tituloPagina span { border-bottom:0 !important; text-indent:0 !important; pad
 <option data-price="120.00" value="09">Especialidade: Técnico de Enfermagem</option>
 </optgroup>
 </select></div>
+<script>
+/* Mobile: remove os rótulos dos optgroups do seletor de vagas (evita confusão com o nome da vaga no seletor nativo do celular). No desktop, mantém os títulos. */
+(function(){
+  function flattenVaga(){
+    if(!window.matchMedia('(max-width: 768px)').matches) return;
+    var sel = document.getElementById('VAGA');
+    if(!sel || sel.getAttribute('data-flattened') === '1') return;
+    var groups = sel.querySelectorAll('optgroup');
+    if(!groups.length) return;
+    groups.forEach(function(g){
+      while(g.firstElementChild){ sel.insertBefore(g.firstElementChild, g); }
+      sel.removeChild(g);
+    });
+    sel.setAttribute('data-flattened','1');
+  }
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', flattenVaga);
+  } else {
+    flattenVaga();
+  }
+})();
+</script>
 </fieldset>
 <fieldset id="fs-prova-local">
 <label class="description">Local de Prova</label>
