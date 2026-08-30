@@ -894,7 +894,7 @@ h2.tituloPagina span { border-bottom:0 !important; text-indent:0 !important; pad
 <label class="description decl-veracidade">
 <input name="termo" required="" type="checkbox" value="on"/>
  
- Declaro conhecer e aceitar o Edital do Concurso Público, tendo, na data de hoje, todos os requisitos necessários para fazer a inscrição, assumindo toda a responsabilidade pela veracidade das informações preenchidas, sob pena do cancelamento da inscrição em qualquer fase do concurso público, ficando sujeito às sanções penais aplicáveis.
+ Declaro que conheço e aceito o Edital, que atendo a todos os requisitos para a inscrição e que as informações prestadas são verdadeiras, sob pena de cancelamento da inscrição em qualquer fase e das sanções legais cabíveis.
  
  </label>
 </fieldset>
@@ -1858,6 +1858,12 @@ html, body { overflow-x: hidden !important; }
   html body #pgInformacoes { padding: 10px 6px 0 6px !important; }
   #frm-style-list fieldset { padding-left: 10px !important; padding-right: 10px !important; }
 
+  /* Padroniza TODOS os checkboxes do formulário com o mesmo tamanho */
+  #frm-style-list input[type=checkbox] {
+    width: 18px !important; height: 18px !important; transform: none !important;
+    accent-color: #0f4cad; flex-shrink: 0;
+  }
+
   /* Declaração: checkbox abaixo do texto, alinhado à esquerda (sem hifenização) */
   #frm-style-list label.decl-veracidade {
     display: flex !important; flex-direction: column-reverse !important;
@@ -1866,7 +1872,7 @@ html, body { overflow-x: hidden !important; }
     hyphens: none; -webkit-hyphens: none; word-break: normal; overflow-wrap: break-word;
   }
   #frm-style-list label.decl-veracidade > input[type=checkbox] {
-    transform: scale(1.4); margin: 16px 0 0 0 !important; align-self: flex-start;
+    margin: 16px 0 0 0 !important; align-self: flex-start;
   }
 }
 </style>

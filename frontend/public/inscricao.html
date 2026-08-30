@@ -1712,7 +1712,12 @@ html, body { overflow-x: hidden !important; }
     hyphens: none; -webkit-hyphens: none; word-break: normal; overflow-wrap: break-word;
   }
   #frm-style-list label.decl-veracidade > input[type=checkbox] {
-    transform: scale(1.4); margin: 16px 0 0 0 !important; align-self: flex-start;
+    margin: 16px 0 0 0 !important; align-self: flex-start;
+  }
+  /* Padroniza TODOS os checkboxes do formulário com o mesmo tamanho */
+  #frm-style-list input[type=checkbox] {
+    width: 18px !important; height: 18px !important; transform: none !important;
+    accent-color: #0f4cad; flex-shrink: 0;
   }
 }
 </style>
