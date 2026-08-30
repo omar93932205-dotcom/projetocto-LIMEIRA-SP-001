@@ -102,7 +102,7 @@
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
 
-user_problem_statement: "Popular o painel administrativo (SEAP-MA) com 150 inscrições de teste realistas, com fotos reais, vagas aleatórias entre os 9 cargos, metade em desktop e metade em mobile."
+user_problem_statement: "Verificar remoção do sufixo '(SEAP_MA_26)' do título do concurso em DUAS páginas do site público (/confirmacao.html e /inscricao-realizada.html). Testar em desktop (1920x1000) e mobile (390x844)."
 
 backend:
   - task: "Seed de 150 inscrições realistas (script /app/scripts/seed_inscricoes.py)"
@@ -138,13 +138,11 @@ backend:
 metadata:
   created_by: "main_agent"
   version: "1.0"
-  test_sequence: 2
-  run_ui: false
+  test_sequence: 4
+  run_ui: true
 
 test_plan:
-  current_focus:
-    - "Seed de 150 inscrições realistas (script /app/scripts/seed_inscricoes.py)"
-    - "API admin retorna inscrições e documentos corretamente"
+  current_focus: []
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
@@ -152,5 +150,33 @@ test_plan:
 agent_communication:
     -agent: "main"
     -message: "Rodei o seed de 150 inscrições no MongoDB. Por favor valide via API admin: 1) login /api/admin/auth/login com donas/Seinao10@@ retorna token; 2) GET /api/admin/inscriptions com Bearer token retorna total>=150 finalizadas, com mix de device (desktop e mobile), cargo_titulo entre os 9 cargos e valor correspondente (Inspetor=150, Monitor=85, Especialista/Especialidade sociais=180, Assistente/Técnico=120); 3) GET /api/admin/dashboard/kpis mostra inscricoes>=150 e acessos>=150; 4) GET /api/admin/documentos lista candidatos com documentos e GET /api/admin/documentos/{cpf}/{tipo}?token=<jwt> devolve uma imagem (content-type image/*). Não teste UI, apenas backend/API."
+
+frontend:
+  - task: "Remover sufixo '(SEAP_MA_26)' do título do concurso em /confirmacao.html e /inscricao-realizada.html"
+    implemented: true
+    working: true
+    file: "/app/frontend/public/confirmacao.html, /app/frontend/public/inscricao-realizada.html"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        -working: false
+        -agent: "testing"
+        -comment: "❌ CRÍTICO: Sufixo 'SEAP_MA_26' AINDA ESTÁ PRESENTE em ambas as páginas. Testados 4 cenários (2 páginas × 2 viewports): TODOS FALHARAM. Localizações encontradas: 1) Footer copyright '© CEBRASPE — CONCURSO PÚBLICO SEAP_MA_26' (div.links); 2) Parágrafo '<p>Concurso Público — SEAP_MA_26</p>'; 3) Footer copyright duplicado (div.ceb-copyright). Linhas específicas: confirmacao.html (981, 1614, 1635) e inscricao-realizada.html (808, 1441, 1462). O nome correto 'Concurso Público da Secretaria de Estado de Administração Penitenciária do Maranhão' ESTÁ presente no H2 principal, mas o sufixo indesejado aparece nos rodapés. AÇÃO NECESSÁRIA: Substituir todas as ocorrências de 'SEAP_MA_26' por 'Secretaria de Estado de Administração Penitenciária do Maranhão' ou remover completamente o sufixo dos footers."
+        -working: true
+        -agent: "testing"
+        -comment: "✅ VALIDADO: Sufixo 'SEAP_MA_26' FOI REMOVIDO com sucesso de ambas as páginas. Testados 4 cenários (2 páginas × 2 viewports): TODOS PASSARAM (4/4 = 100%). Resultados: 1) /confirmacao.html Desktop (1920x1000): PASS - 'SEAP_MA_26' não encontrado, título principal contém 'Secretaria de Estado de Administração Penitenciária do Maranhão' ✓; 2) /confirmacao.html Mobile (390x844): PASS - 'SEAP_MA_26' não encontrado, título correto presente ✓; 3) /inscricao-realizada.html Desktop (1920x1000): PASS - 'SEAP_MA_26' não encontrado, título correto presente ✓; 4) /inscricao-realizada.html Mobile (390x844): PASS - 'SEAP_MA_26' não encontrado, título correto presente ✓. Nota: Os footers agora exibem 'SEAP-MA' (com hífen, sem '_26') nas linhas confirmacao.html (981, 1614, 1635) e inscricao-realizada.html (808, 1441, 1462). O requisito de remover a substring 'SEAP_MA_26' foi completamente atendido."
+
+frontend_test_plan:
+  current_focus: []
+  method: "Injetar sessionStorage e validar render em /confirmacao.html"
+
+agent_communication:
     -agent: "testing"
     -message: "Validação completa realizada com sucesso. Criado /app/backend_test.py com 6 testes abrangentes. Resultados: ✅ Todos os 6 testes passaram (100% sucesso). Detalhes: 152 inscrições finalizadas (2 a mais que o esperado, provavelmente de testes anteriores), device mix balanceado (77 desktop/75 mobile ≈50/50), todos os 9 cargos presentes com valores corretos, 381 acessos totais (150 inscrições + 220 extras + alguns de testes), 151 cadastros com documentos (fotos reais JPEG), endpoint de imagem retorna Content-Type: image/jpeg com 11.5KB, autenticação JWT funcionando corretamente, proteção de rotas funcionando (401 sem token). Nenhum problema crítico encontrado. Backend está 100% funcional conforme especificação."
+    -agent: "testing"
+    -message: "✅ BUG FIX VALIDADO: Página de confirmação (/confirmacao.html) agora exibe corretamente as 3 opções (cotas negros, PcD, atendimento especial). Testados 3 cenários completos em desktop e mobile: (1) Todas true: os 3 elementos mostram '(X) SIM'; (2) Mistas (cotas_negros=true, PcD=false, atendimento=false): marcadores batem exatamente com os valores injetados; (3) Todas false: os 3 elementos mostram '(X) NÃO'. Mobile: card usa largura completa sem excesso de margem. Todos os testes passaram 100%. O elemento #c-atendimento (que estava faltando) agora existe e funciona perfeitamente."
+    -agent: "testing"
+    -message: "❌ TESTE FALHOU: Sufixo 'SEAP_MA_26' NÃO foi removido. Executados 4 testes (2 páginas × 2 viewports): TODOS FALHARAM (0/4 passaram). Detalhes: O sufixo aparece em 3 localizações por página: (1) Footer '© CEBRASPE — CONCURSO PÚBLICO SEAP_MA_26' em div.links; (2) Parágrafo '<p>Concurso Público — SEAP_MA_26</p>'; (3) Footer duplicado em div.ceb-copyright. Linhas exatas: confirmacao.html (981, 1614, 1635) e inscricao-realizada.html (808, 1441, 1462). O título correto 'Concurso Público da Secretaria de Estado de Administração Penitenciária do Maranhão' ESTÁ presente no H2 principal, mas o sufixo indesejado permanece visível nos rodapés. AÇÃO IMEDIATA: Substituir 'SEAP_MA_26' por 'Secretaria de Estado de Administração Penitenciária do Maranhão' ou remover completamente das 6 linhas identificadas."
+    -agent: "testing"
+    -message: "✅ REVALIDAÇÃO COMPLETA: Sufixo 'SEAP_MA_26' foi REMOVIDO com sucesso. Executados 4 testes (2 páginas × 2 viewports): TODOS PASSARAM (4/4 = 100%). Detalhes: A substring 'SEAP_MA_26' não aparece em nenhuma parte do innerText das páginas (incluindo rodapés). O título principal 'Concurso Público da Secretaria de Estado de Administração Penitenciária do Maranhão' está presente e correto em ambas as páginas. Os footers agora exibem 'SEAP-MA' (com hífen, sem '_26'). Requisito completamente atendido. Screenshots salvos: confirmacao_desktop.png, confirmacao_mobile.png, inscricao_realizada_desktop.png, inscricao_realizada_mobile.png."

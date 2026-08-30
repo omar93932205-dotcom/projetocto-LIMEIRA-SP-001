@@ -6,7 +6,7 @@
 --><head><meta charset="utf-8"/><meta content="no-cache, no-store, must-revalidate" http-equiv="Cache-Control"/><meta content="no-cache" http-equiv="Pragma"/><meta content="0" http-equiv="Expires"/>
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>Cebraspe - Concurso Público SEAP_MA_26</title>
+<title>Cebraspe - Concurso Público SEAP-MA</title>
 <meta content="" name="description"/>
 <meta content="Processos seletivos, concursos pï¿½blicos, vestibular" name="keywords"/>
 <meta content="Impacta Soluï¿½ï¿½es Web | Software ProSeleta" name="author"/>
@@ -731,7 +731,7 @@ h2.tituloPagina span { border-bottom:0 !important; text-indent:0 !important; pad
 </div>
 <div class="dados">
 <p class="tipo">Concurso</p>
-<h2 style="font-weight:normal!important;font-size:16px;"><strong>Concurso Público da Secretaria de Estado de Administração Penitenciária do Maranhão (SEAP_MA_26)</strong></h2>
+<h2 style="font-weight:normal!important;font-size:16px;"><strong>Concurso Público da Secretaria de Estado de Administração Penitenciária do Maranhão</strong></h2>
 <p class="periodoInscricoes">Inscrições de 
  <b>30/07/2026</b> a 
  <b>31/08/2026</b>
@@ -800,8 +800,9 @@ h2.tituloPagina span { border-bottom:0 !important; text-indent:0 !important; pad
 <td colspan="3" data-testid="c-email" id="c-email" style="padding:4px 8px;">—</td>
 </tr>
 </table>
-<p style="margin:22px 0 6px 0;">É optante pela reserva de vagas prevista na Lei 3113/94 para pessoas com deficiência? <span data-testid="c-pcd" id="c-pcd" style="float:right;">( ) SIM ( ) NÃO</span></p>
-<p style="margin:6px 0;">É optante pela reserva de vagas prevista na Lei 5.309/2017 para os negros? <span data-testid="c-negros" id="c-negros" style="float:right;">( ) SIM ( ) NÃO</span></p>
+<p style="margin:22px 0 6px 0;">É optante pela reserva de vagas prevista na Lei 5.309/2017 para os negros? <span data-testid="c-negros" id="c-negros" style="float:right;">( ) SIM ( ) NÃO</span></p>
+<p style="margin:6px 0;">É optante pela reserva de vagas prevista na Lei 3113/94 para pessoas com deficiência? <span data-testid="c-pcd" id="c-pcd" style="float:right;">( ) SIM ( ) NÃO</span></p>
+<p style="margin:6px 0;">Necessidade de atendimento especial? <span data-testid="c-atendimento" id="c-atendimento" style="float:right;">( ) SIM ( ) NÃO</span></p>
 <div style="margin-top:28px;">
 <button data-testid="btn-alterar-dados" id="btn-alterar" style="padding:12px 24px;background:#e5e7eb;border:1.5px solid #6b7280;color:#02142c;font-weight:700;font-size:14px;letter-spacing:.5px;text-transform:uppercase;cursor:pointer;border-radius:6px;margin:0 8px 0 0;min-width:180px;height:44px;box-sizing:border-box;" type="button">Alterar Dados</button>
 <button data-testid="btn-confirmar-inscricao" id="btn-confirmar" onmouseout="this.style.background='#1858BF';this.style.borderColor='#1858BF';" onmouseover="this.style.background='#0f4cad';this.style.borderColor='#0f4cad';" style="padding:12px 24px;background:#1858BF;color:#ffffff;border:1.5px solid #1858BF;font-weight:700;font-size:14px;letter-spacing:.5px;text-transform:uppercase;cursor:pointer;border-radius:6px;transition:background .2s, border-color .2s;min-width:180px;height:44px;box-sizing:border-box;" type="button">Confirmar Inscrição</button>
@@ -888,8 +889,9 @@ h2.tituloPagina span { border-bottom:0 !important; text-indent:0 !important; pad
     if(!el) return;
     el.textContent = yes ? '(X) SIM   ( ) NÃO' : '( ) SIM   (X) NÃO';
   }
-  mark('c-pcd', !!d.cotas_pcd);
+  mark('c-pcd', !!d.PORTADOR_DEFICIENCIA);
   mark('c-negros', !!d.cotas_negros);
+  mark('c-atendimento', !!d.atendimento_especial);
 
   var bAlt = document.getElementById('btn-alterar');
   if(bAlt) bAlt.addEventListener('click', function(){ window.location.href='/inscricao'; });
@@ -909,7 +911,7 @@ h2.tituloPagina span { border-bottom:0 !important; text-indent:0 !important; pad
         nome: d.NOME || '',
         cpf: d.CPF || '',
         email: d.EMAIL || '',
-        concurso: d.__concurso || 'Concurso Público da Secretaria de Estado de Administração Penitenciária do Maranhão (SEAP_MA_26) - Edital 001/2026',
+        concurso: d.__concurso || 'Concurso Público da Secretaria de Estado de Administração Penitenciária do Maranhão - Edital 001/2026',
         edital: d.__edital || '001/2026-SEAP-MA',
         cargo_codigo: d.__cargo_codigo || '',
         cargo_titulo: d.__cargo_titulo || '',
@@ -976,7 +978,7 @@ h2.tituloPagina span { border-bottom:0 !important; text-indent:0 !important; pad
 <div class="final">
 <div class="Conteudo">
 <div class="links">
- © CEBRASPE — CONCURSO PÚBLICO SEAP_MA_26
+ © CEBRASPE — CONCURSO PÚBLICO SEAP-MA
  </div>
 <div class="DesenvolvimentoProSeleta">
  Desenvolvido por <a href="#">ProSeleta - Gestão de Processos Seletivos Online</a>
@@ -1609,7 +1611,7 @@ html, body { overflow-x: hidden !important; }
 <div>
 <div class="ceb-brand">Cebraspe</div>
 <p>Centro Brasileiro de Pesquisa em Avaliação e Seleção e de Promoção de Eventos.</p>
-<p style="margin-top:10px;">Concurso Público — SEAP_MA_26</p>
+<p style="margin-top:10px;">Concurso Público — SEAP-MA</p>
 </div>
 <div>
 <h4>Institucional</h4>
@@ -1630,7 +1632,7 @@ html, body { overflow-x: hidden !important; }
 </div>
 </div>
 <div class="ceb-copyright">
-    © CEBRASPE — CONCURSO PÚBLICO SEAP_MA_26
+    © CEBRASPE — CONCURSO PÚBLICO SEAP-MA
   </div>
 </footer>
 </div>
@@ -1639,5 +1641,10 @@ html body h2.tituloPagina.tituloPagina{ line-height:1.2 !important; font-size:22
 html body h2.tituloPagina.tituloPagina span{ line-height:1.2 !important; padding:0 !important; text-indent:0 !important; }
 html body #pgInformacoes{ padding-top:6px !important; }
 html body #TopoInformacoes{ margin-top:4px !important; margin-bottom:14px !important; padding-top:0 !important; }
+@media (max-width: 768px){
+  html body .Miolo{ padding-top:8px !important; }
+  html body #pgInformacoes{ padding-left:6px !important; padding-right:6px !important; }
+  .blocoPadrao{ padding-left:6px !important; padding-right:6px !important; }
+}
 </style>
 </body></html>
