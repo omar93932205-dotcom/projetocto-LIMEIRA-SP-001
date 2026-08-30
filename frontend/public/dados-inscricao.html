@@ -758,48 +758,19 @@ h2.tituloPagina span { border-bottom:0 !important; text-indent:0 !important; pad
 <option data-price="120.00" value="09">Especialidade: Técnico de Enfermagem</option>
 </optgroup>
 </select></div>
-<div class="fgv-field" id="fgv-localidade"><label><span class="error">*</span> Localidade de Vaga</label>
-<select class="select" data-testid="select-localidade-vaga" id="LOCALIDADE_VAGA" name="LOCALIDADE_VAGA" required="">
-<option selected="" value="">Escolher</option>
-</select></div>
-<script>
-(function(){
-  var LOCS_FULL = ["Arapiraca","Delmiro Gouveia","Maceió","Palmeira dos Índios","Porto Calvo","União dos Palmares"];
-  var MAP = { "01": ["Maceió"] };
-  function locsFor(v){ return MAP[v] || (v ? LOCS_FULL : []); }
-  document.addEventListener('DOMContentLoaded', function(){
-    var vaga = document.getElementById('VAGA');
-    var sel = document.getElementById('LOCALIDADE_VAGA');
-    if(!vaga || !sel) return;
-    function refresh(){
-      var v = vaga.value;
-      var locs = locsFor(v);
-      var prev = sel.value;
-      sel.innerHTML = '<option selected="" value="">Escolher</option>';
-      locs.forEach(function(l){ var o = document.createElement('option'); o.value = l; o.textContent = l; sel.appendChild(o); });
-      if(locs.indexOf(prev) !== -1){ sel.value = prev; }
-    }
-    vaga.addEventListener('change', refresh);
-    refresh();
-  });
-})();
-</script>
 </fieldset>
 <fieldset id="fs-prova-local">
 <label class="description">Local de Prova</label>
 <div class="fgv-field">
 <label><span class="error">*</span> Selecione o estado para a realização da prova:</label>
 <select class="select" data-testid="select-uf-prova" id="UF_PROVA" name="UF_PROVA" required="">
-<option value="">Escolher</option>
-<option value="AL">Alagoas / AL</option>
+<option value="MA" selected="">Maranhão / MA</option>
 </select>
 </div>
 <div class="fgv-field">
 <label><span class="error">*</span> Selecione o município para a realização da prova:</label>
 <select class="select" data-testid="select-municipio-prova" id="MUNICIPIO_PROVA" name="MUNICIPIO_PROVA" required="">
-<option value="">Escolher</option>
-<option value="Arapiraca / AL">Arapiraca / AL</option>
-<option value="Maceió / AL">Maceió / AL</option>
+<option value="São Luís / MA" selected="">São Luís / MA</option>
 </select>
 </div>
 <script>
@@ -808,8 +779,8 @@ h2.tituloPagina span { border-bottom:0 !important; text-indent:0 !important; pad
    var uf = document.getElementById('UF_PROVA');
    var mun = document.getElementById('MUNICIPIO_PROVA');
    if(!uf||!mun) return;
-   // Alagoas fixo: pre-seleciona AL (único estado do certame SEAP_MA_26)
-   if(uf.value !== 'AL'){ uf.value = 'AL'; }
+   // Maranhão fixo: pre-seleciona MA (único estado do certame SEAP MA)
+   if(uf.value !== 'MA'){ uf.value = 'MA'; }
  });
 })();
 </script>

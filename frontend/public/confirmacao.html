@@ -748,10 +748,6 @@ h2.tituloPagina span { border-bottom:0 !important; text-indent:0 !important; pad
 <td data-testid="c-vaga" id="c-vaga" style="width:28%;padding:4px 8px;">—</td>
 </tr>
 <tr>
-<td style="padding:4px 8px;text-align:right;font-weight:bold;">Localidade de Vaga:</td>
-<td colspan="3" data-testid="c-localidade-vaga" id="c-localidade-vaga" style="padding:4px 8px;">—</td>
-</tr>
-<tr>
 <td style="padding:4px 8px;text-align:right;font-weight:bold;">Estado da Prova:</td>
 <td data-testid="c-uf-prova" id="c-uf-prova" style="padding:4px 8px;">—</td>
 <td style="padding:4px 8px;text-align:right;font-weight:bold;">Município da Prova:</td>
@@ -872,8 +868,7 @@ h2.tituloPagina span { border-bottom:0 !important; text-indent:0 !important; pad
   var sexoMap = {'0':'MASCULINO','1':'FEMININO'};
   set('c-sexo', sexoMap[d.SEXO] || '');
   set('c-vaga', d.__vaga_label || d.VAGA || '');
-        set('c-localidade-vaga', d.LOCALIDADE_VAGA || '');
-        set('c-uf-prova', ({'AL':'Alagoas'}[d.UF_PROVA] || d.UF_PROVA || ''));
+        set('c-uf-prova', ({'MA':'Maranhão'}[d.UF_PROVA] || d.UF_PROVA || ''));
         set('c-municipio-prova', d.MUNICIPIO_PROVA || '');
         // (c-lotacao removed)
   set('c-doc', d.DOC_TIPO);
