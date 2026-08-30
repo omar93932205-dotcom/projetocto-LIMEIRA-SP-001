@@ -138,7 +138,7 @@ backend:
 metadata:
   created_by: "main_agent"
   version: "1.0"
-  test_sequence: 4
+  test_sequence: 5
   run_ui: true
 
 test_plan:
@@ -179,6 +179,18 @@ frontend:
         -agent: "testing"
         -comment: "✅ VALIDADO: Sufixo 'SEAP_MA_26' NÃO EXISTE na página /pagamento-pix.html. Testados 2 cenários (desktop 1920x1000 e mobile 390x844): TODOS PASSARAM (2/2 = 100%). Resultados: 1) Desktop (1920x1000): PASS - 'SEAP_MA_26' não encontrado no HTML completo (incluindo cabeçalho/rodapé de impressão), título 'Pagamento via PIX' presente, nome do concurso 'Concurso Público da Secretaria de Estado de Administração Penitenciária do Maranhão' presente, 'SEAP-MA' (com hífen) presente no rodapé ✓; 2) Mobile (390x844): PASS - 'SEAP_MA_26' não encontrado no HTML completo, título 'Pagamento via PIX' presente, nome do concurso presente, 'SEAP-MA' (com hífen) presente no rodapé ✓. Verificação realizada via document.documentElement.innerHTML (HTML completo da página). Screenshots salvos: pagamento_pix_desktop.png, pagamento_pix_mobile.png. Requisito completamente atendido - a substring 'SEAP_MA_26' não aparece em nenhum lugar da página."
 
+  - task: "Verificar remoção de 'SEAP_MA_26' na página /dados-inscricao.html"
+    implemented: true
+    working: true
+    file: "/app/frontend/public/dados-inscricao.html"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        -working: true
+        -agent: "testing"
+        -comment: "✅ VALIDADO: Sufixo 'SEAP_MA_26' NÃO EXISTE na página /dados-inscricao.html. Testados 2 cenários (desktop 1920x1000 e mobile 390x844): TODOS PASSARAM (2/2 = 100%). Resultados: 1) Desktop (1920x1000): PASS - 'SEAP_MA_26' não encontrado no HTML completo (verificado via document.documentElement.innerHTML), bloco CONCURSO mostra 'Concurso Público da Secretaria de Estado de Administração Penitenciária do Maranhão' (sem sufixo entre parênteses) ✓, observação 'Preencha os campos abaixo' presente ✓; 2) Mobile (390x844): PASS - 'SEAP_MA_26' não encontrado no HTML completo, bloco CONCURSO com título correto ✓, observação 'Preencha os campos abaixo' presente ✓. Verificação realizada via grep no arquivo fonte (exit code 1 = não encontrado) e via Playwright no HTML renderizado. Screenshots salvos: dados_inscricao_desktop.png, dados_inscricao_mobile.png. Requisito completamente atendido - a substring 'SEAP_MA_26' não aparece em nenhum lugar da página (incluindo título, bloco CONCURSO, rodapé e cabeçalhos ocultos)."
+
 frontend_test_plan:
   current_focus: []
   method: "Injetar sessionStorage e validar render em /confirmacao.html"
@@ -194,3 +206,5 @@ agent_communication:
     -message: "✅ REVALIDAÇÃO COMPLETA: Sufixo 'SEAP_MA_26' foi REMOVIDO com sucesso. Executados 4 testes (2 páginas × 2 viewports): TODOS PASSARAM (4/4 = 100%). Detalhes: A substring 'SEAP_MA_26' não aparece em nenhuma parte do innerText das páginas (incluindo rodapés). O título principal 'Concurso Público da Secretaria de Estado de Administração Penitenciária do Maranhão' está presente e correto em ambas as páginas. Os footers agora exibem 'SEAP-MA' (com hífen, sem '_26'). Requisito completamente atendido. Screenshots salvos: confirmacao_desktop.png, confirmacao_mobile.png, inscricao_realizada_desktop.png, inscricao_realizada_mobile.png."
     -agent: "testing"
     -message: "✅ VALIDAÇÃO /pagamento-pix.html: Sufixo 'SEAP_MA_26' NÃO EXISTE na página. Testados 2 viewports (desktop 1920x1000 e mobile 390x844): TODOS PASSARAM (2/2 = 100%). Verificação via document.documentElement.innerHTML (HTML completo incluindo cabeçalho/rodapé de impressão). Resultados: Desktop PASS - 'SEAP_MA_26' não encontrado, título 'Pagamento via PIX' presente, nome do concurso 'Concurso Público da Secretaria de Estado de Administração Penitenciária do Maranhão' presente, 'SEAP-MA' (com hífen) presente no rodapé ✓; Mobile PASS - mesmos critérios atendidos ✓. Screenshots: pagamento_pix_desktop.png, pagamento_pix_mobile.png. Requisito completamente atendido."
+    -agent: "testing"
+    -message: "✅ VALIDAÇÃO /dados-inscricao.html: Sufixo 'SEAP_MA_26' NÃO EXISTE na página. Testados 2 viewports (desktop 1920x1000 e mobile 390x844): TODOS PASSARAM (2/2 = 100%). Verificação via document.documentElement.innerHTML (HTML completo da página). Resultados: Desktop PASS - 'SEAP_MA_26' não encontrado no HTML completo, bloco CONCURSO mostra 'Concurso Público da Secretaria de Estado de Administração Penitenciária do Maranhão' (sem sufixo entre parênteses), observação 'Preencha os campos abaixo' presente ✓; Mobile PASS - 'SEAP_MA_26' não encontrado no HTML completo, bloco CONCURSO com título correto, observação 'Preencha os campos abaixo' presente ✓. Verificação adicional: grep no arquivo fonte retornou exit code 1 (não encontrado). Screenshots: dados_inscricao_desktop.png, dados_inscricao_mobile.png. Requisito completamente atendido - a substring 'SEAP_MA_26' não aparece em nenhum lugar da página (incluindo título, bloco CONCURSO, rodapé e cabeçalhos ocultos)."
