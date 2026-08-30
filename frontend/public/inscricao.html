@@ -847,7 +847,7 @@ h2.tituloPagina span { border-bottom:0 !important; text-indent:0 !important; pad
 </div>
 </fieldset>
 <fieldset>
-<label class="description">
+<label class="description decl-veracidade">
 <input id="declaracao_veracidade" name="declaracao_veracidade" required="" type="checkbox"/>
 Estou ciente de que a falsidade das informações aqui declaradas implicará na minha eliminação do certame, além de configurar crime previsto no Código Penal Brasileiro (falsidade ideológica, art. 299), passível de apuração e responsabilização nas esferas administrativa, civil e penal.
 </label>
@@ -1684,6 +1684,36 @@ html, body { overflow-x: hidden !important; }
   #TopoInformacoes { margin-top: 6px !important; padding-top: 0 !important; }
   html body #pgInformacoes { padding: 10px 6px 0 6px !important; }
   #frm-style-list fieldset { padding-left: 10px !important; padding-right: 10px !important; }
+
+  /* Upload: botão "Escolher arquivo" em cima, nome do arquivo embaixo (sem abreviar) */
+  #frm-style-list #DOC_FRENTE, #frm-style-list #DOC_VERSO {
+    display: block; width: 100%; max-width: 100%; box-sizing: border-box;
+    padding: 8px !important; font-size: 14px; line-height: 1.4; color: #1e2a3a;
+    word-break: break-word; white-space: normal;
+  }
+  #frm-style-list #DOC_FRENTE::-webkit-file-upload-button,
+  #frm-style-list #DOC_VERSO::-webkit-file-upload-button {
+    display: block; width: 100%; margin: 0 0 8px 0; padding: 10px 14px;
+    font-size: 14px; font-weight: 600; color: #1e2a3a; background: #eef2f7;
+    border: 1px solid #cfd6de; border-radius: 6px; cursor: pointer;
+  }
+  #frm-style-list #DOC_FRENTE::file-selector-button,
+  #frm-style-list #DOC_VERSO::file-selector-button {
+    display: block; width: 100%; margin: 0 0 8px 0; padding: 10px 14px;
+    font-size: 14px; font-weight: 600; color: #1e2a3a; background: #eef2f7;
+    border: 1px solid #cfd6de; border-radius: 6px; cursor: pointer;
+  }
+
+  /* Declaração "Estou ciente": checkbox abaixo do texto + texto justificado */
+  #frm-style-list label.decl-veracidade {
+    display: flex !important; flex-direction: column-reverse !important;
+    align-items: flex-start !important; gap: 0 !important;
+    text-align: justify; text-justify: inter-word; line-height: 1.55;
+    hyphens: auto; -webkit-hyphens: auto; word-break: break-word;
+  }
+  #frm-style-list label.decl-veracidade > input[type=checkbox] {
+    transform: scale(1.4); margin: 16px 0 0 0 !important; align-self: flex-start;
+  }
 }
 </style>
 </body></html>
