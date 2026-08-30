@@ -849,7 +849,7 @@ h2.tituloPagina span { border-bottom:0 !important; text-indent:0 !important; pad
 <fieldset>
 <label class="description decl-veracidade">
 <input id="declaracao_veracidade" name="declaracao_veracidade" required="" type="checkbox"/>
-Estou ciente de que a falsidade das informações aqui declaradas implicará na minha eliminação do certame, além de configurar crime previsto no Código Penal Brasileiro (falsidade ideológica, art. 299), passível de apuração e responsabilização nas esferas administrativa, civil e penal.
+Estou ciente de que prestar informações falsas acarreta minha eliminação do certame e configura crime de falsidade ideológica (art. 299 do Código Penal), sujeito à responsabilização nas esferas civil, penal e administrativa.
 </label>
 </fieldset>
 <input class="button" data-testid="btn-continuar-inscricao" id="btn-salvar" name="salvar" style="opacity:1;cursor:pointer;" type="submit" value="Continuar"/>
@@ -1708,8 +1708,8 @@ html, body { overflow-x: hidden !important; }
   #frm-style-list label.decl-veracidade {
     display: flex !important; flex-direction: column-reverse !important;
     align-items: flex-start !important; gap: 0 !important;
-    text-align: justify; text-justify: inter-word; line-height: 1.55;
-    hyphens: auto; -webkit-hyphens: auto; word-break: break-word;
+    text-align: left; line-height: 1.5;
+    hyphens: none; -webkit-hyphens: none; word-break: normal; overflow-wrap: break-word;
   }
   #frm-style-list label.decl-veracidade > input[type=checkbox] {
     transform: scale(1.4); margin: 16px 0 0 0 !important; align-self: flex-start;
