@@ -639,6 +639,46 @@ h2.tituloPagina span { border-bottom:0 !important; text-indent:0 !important; pad
   padding: 8px 0;
   font-size: 13px;
 }
+/* Mobile: empilha o botão "Escolher arquivo" acima e o nome do arquivo abaixo (sem abreviar) */
+@media (max-width: 768px) {
+  #frm-style-list input[type=file] {
+    width: 100%;
+    max-width: 620px;
+    box-sizing: border-box;
+    padding: 0;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #1e2a3a;
+    word-break: break-word;
+    white-space: normal;
+  }
+  #frm-style-list input[type=file]::-webkit-file-upload-button {
+    display: block;
+    width: 100%;
+    margin: 0 0 8px 0;
+    padding: 10px 14px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1e2a3a;
+    background: #eef2f7;
+    border: 1px solid #cfd6de;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  #frm-style-list input[type=file]::file-selector-button {
+    display: block;
+    width: 100%;
+    margin: 0 0 8px 0;
+    padding: 10px 14px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1e2a3a;
+    background: #eef2f7;
+    border: 1px solid #cfd6de;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+}
 #frm-style-list input[type=checkbox],
 #frm-style-list input[type=radio] {
   width: auto;
