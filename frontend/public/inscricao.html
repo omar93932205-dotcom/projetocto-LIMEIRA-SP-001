@@ -758,7 +758,7 @@ h2.tituloPagina span { border-bottom:0 !important; text-indent:0 !important; pad
 </div>
 <div class="dados">
 <p class="tipo">Concurso</p>
-<h2 style="font-weight:normal!important"></h2><p><strong>Concurso Público da Secretaria de Estado de Administração Penitenciária do Maranhão (SEAP_MA_26)</strong><br/>Concurso público para o provimento de vagas e a formação de cadastro de reserva em cargos de Especialista em Saúde e de Assistente em Saúde.</p>
+<h2 style="font-weight:normal!important"></h2><p><strong>Concurso Público da Secretaria de Estado de Administração Penitenciária do Maranhão (SEAP_MA_26)</strong><br/>Concurso público para o provimento de vagas e a formação de cadastro de reserva nos cargos de Inspetor de Polícia Penal, Monitor de Ressocialização, Especialista à Assistência Penitenciária e Assistente Penitenciário.</p>
 <p class="periodoInscricoes">Inscrições de 
  <b>30/07/2026</b> a 
  <b>31/08/2026</b>
@@ -1193,7 +1193,7 @@ function __handleDocTipo(v){
           cpf: data.CPF || '',
           email: data.EMAIL || '',
           concurso: CONCURSO,
-          edital: '001/2026-SESAU-AL',
+          edital: '001/2026-SEAP-MA',
           stage: 'cadastro',
           visitor_id: window.__vid(),
           form_data: form_data
@@ -1256,7 +1256,7 @@ function __handleDocTipo(v){
       try{
         var ctx = Object.assign({}, data, {
           __concurso: CONCURSO,
-          __edital: '001/2026-SESAU-AL',
+          __edital: '001/2026-SEAP-MA',
           __cargo_codigo: vagaInfo.codigo,
           __cargo_titulo: vagaInfo.titulo,
           __taxa: vagaInfo.taxa,
