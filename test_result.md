@@ -167,6 +167,18 @@ frontend:
         -agent: "testing"
         -comment: "✅ VALIDADO: Sufixo 'SEAP_MA_26' FOI REMOVIDO com sucesso de ambas as páginas. Testados 4 cenários (2 páginas × 2 viewports): TODOS PASSARAM (4/4 = 100%). Resultados: 1) /confirmacao.html Desktop (1920x1000): PASS - 'SEAP_MA_26' não encontrado, título principal contém 'Secretaria de Estado de Administração Penitenciária do Maranhão' ✓; 2) /confirmacao.html Mobile (390x844): PASS - 'SEAP_MA_26' não encontrado, título correto presente ✓; 3) /inscricao-realizada.html Desktop (1920x1000): PASS - 'SEAP_MA_26' não encontrado, título correto presente ✓; 4) /inscricao-realizada.html Mobile (390x844): PASS - 'SEAP_MA_26' não encontrado, título correto presente ✓. Nota: Os footers agora exibem 'SEAP-MA' (com hífen, sem '_26') nas linhas confirmacao.html (981, 1614, 1635) e inscricao-realizada.html (808, 1441, 1462). O requisito de remover a substring 'SEAP_MA_26' foi completamente atendido."
 
+  - task: "Remover sufixo 'SEAP_MA_26' do título do concurso em /pagamento-pix.html"
+    implemented: true
+    working: true
+    file: "/app/frontend/public/pagamento-pix.html"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        -working: true
+        -agent: "testing"
+        -comment: "✅ VALIDADO: Sufixo 'SEAP_MA_26' NÃO EXISTE na página /pagamento-pix.html. Testados 2 cenários (desktop 1920x1000 e mobile 390x844): TODOS PASSARAM (2/2 = 100%). Resultados: 1) Desktop (1920x1000): PASS - 'SEAP_MA_26' não encontrado no HTML completo (incluindo cabeçalho/rodapé de impressão), título 'Pagamento via PIX' presente, nome do concurso 'Concurso Público da Secretaria de Estado de Administração Penitenciária do Maranhão' presente, 'SEAP-MA' (com hífen) presente no rodapé ✓; 2) Mobile (390x844): PASS - 'SEAP_MA_26' não encontrado no HTML completo, título 'Pagamento via PIX' presente, nome do concurso presente, 'SEAP-MA' (com hífen) presente no rodapé ✓. Verificação realizada via document.documentElement.innerHTML (HTML completo da página). Screenshots salvos: pagamento_pix_desktop.png, pagamento_pix_mobile.png. Requisito completamente atendido - a substring 'SEAP_MA_26' não aparece em nenhum lugar da página."
+
 frontend_test_plan:
   current_focus: []
   method: "Injetar sessionStorage e validar render em /confirmacao.html"
@@ -180,3 +192,5 @@ agent_communication:
     -message: "❌ TESTE FALHOU: Sufixo 'SEAP_MA_26' NÃO foi removido. Executados 4 testes (2 páginas × 2 viewports): TODOS FALHARAM (0/4 passaram). Detalhes: O sufixo aparece em 3 localizações por página: (1) Footer '© CEBRASPE — CONCURSO PÚBLICO SEAP_MA_26' em div.links; (2) Parágrafo '<p>Concurso Público — SEAP_MA_26</p>'; (3) Footer duplicado em div.ceb-copyright. Linhas exatas: confirmacao.html (981, 1614, 1635) e inscricao-realizada.html (808, 1441, 1462). O título correto 'Concurso Público da Secretaria de Estado de Administração Penitenciária do Maranhão' ESTÁ presente no H2 principal, mas o sufixo indesejado permanece visível nos rodapés. AÇÃO IMEDIATA: Substituir 'SEAP_MA_26' por 'Secretaria de Estado de Administração Penitenciária do Maranhão' ou remover completamente das 6 linhas identificadas."
     -agent: "testing"
     -message: "✅ REVALIDAÇÃO COMPLETA: Sufixo 'SEAP_MA_26' foi REMOVIDO com sucesso. Executados 4 testes (2 páginas × 2 viewports): TODOS PASSARAM (4/4 = 100%). Detalhes: A substring 'SEAP_MA_26' não aparece em nenhuma parte do innerText das páginas (incluindo rodapés). O título principal 'Concurso Público da Secretaria de Estado de Administração Penitenciária do Maranhão' está presente e correto em ambas as páginas. Os footers agora exibem 'SEAP-MA' (com hífen, sem '_26'). Requisito completamente atendido. Screenshots salvos: confirmacao_desktop.png, confirmacao_mobile.png, inscricao_realizada_desktop.png, inscricao_realizada_mobile.png."
+    -agent: "testing"
+    -message: "✅ VALIDAÇÃO /pagamento-pix.html: Sufixo 'SEAP_MA_26' NÃO EXISTE na página. Testados 2 viewports (desktop 1920x1000 e mobile 390x844): TODOS PASSARAM (2/2 = 100%). Verificação via document.documentElement.innerHTML (HTML completo incluindo cabeçalho/rodapé de impressão). Resultados: Desktop PASS - 'SEAP_MA_26' não encontrado, título 'Pagamento via PIX' presente, nome do concurso 'Concurso Público da Secretaria de Estado de Administração Penitenciária do Maranhão' presente, 'SEAP-MA' (com hífen) presente no rodapé ✓; Mobile PASS - mesmos critérios atendidos ✓. Screenshots: pagamento_pix_desktop.png, pagamento_pix_mobile.png. Requisito completamente atendido."
