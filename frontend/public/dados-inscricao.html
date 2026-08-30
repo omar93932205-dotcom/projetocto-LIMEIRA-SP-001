@@ -891,7 +891,7 @@ h2.tituloPagina span { border-bottom:0 !important; text-indent:0 !important; pad
 </fieldset>
 <fieldset>
 <label class="description error"></label>
-<label class="description">
+<label class="description decl-veracidade">
 <input name="termo" required="" type="checkbox" value="on"/>
  
  Declaro conhecer e aceitar o Edital do Concurso Público, tendo, na data de hoje, todos os requisitos necessários para fazer a inscrição, assumindo toda a responsabilidade pela veracidade das informações preenchidas, sob pena do cancelamento da inscrição em qualquer fase do concurso público, ficando sujeito às sanções penais aplicáveis.
@@ -1848,4 +1848,26 @@ html, body { overflow-x: hidden !important; }
     © CEBRASPE — CONCURSO PÚBLICO SEAP_MA_26
   </div>
 </footer>
-</div></body></html>
+</div>
+<style>
+/* ===== Ajustes finais MOBILE: menos espaço vertical no topo + aproveitar largura ===== */
+@media (max-width: 768px) {
+  html body h2.tituloPagina { margin-top: 6px !important; padding-top: 6px !important; padding-bottom: 6px !important; line-height: 1.15 !important; }
+  html body .Miolo { padding-top: 8px !important; }
+  #TopoInformacoes { margin-top: 6px !important; padding-top: 0 !important; }
+  html body #pgInformacoes { padding: 10px 6px 0 6px !important; }
+  #frm-style-list fieldset { padding-left: 10px !important; padding-right: 10px !important; }
+
+  /* Declaração: checkbox abaixo do texto, alinhado à esquerda (sem hifenização) */
+  #frm-style-list label.decl-veracidade {
+    display: flex !important; flex-direction: column-reverse !important;
+    align-items: flex-start !important; gap: 0 !important;
+    text-align: left; line-height: 1.5;
+    hyphens: none; -webkit-hyphens: none; word-break: normal; overflow-wrap: break-word;
+  }
+  #frm-style-list label.decl-veracidade > input[type=checkbox] {
+    transform: scale(1.4); margin: 16px 0 0 0 !important; align-self: flex-start;
+  }
+}
+</style>
+</body></html>
