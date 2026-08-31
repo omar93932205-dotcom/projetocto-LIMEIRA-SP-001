@@ -48,3 +48,10 @@ Regras: taxa superior (cargos 01-12) R$160,00; médio (13-15) R$120,00. Localida
 Identificadores JS internos window.IdecanNotice/IdecanConfirm mantidos (nomes internos, não visíveis ao usuário).
 Verificado por testing_agent (iterations 10-13): 100% backend e frontend.
 Pendências/observações: imagem decorativa do login do painel (Tartaruga Ninja) é um asset off-brand — aguardando decisão do usuário para trocar.
+
+## Changelog — 2026-06 (fork: migração p/ Avança SP / Prefeitura de Limeira)
+- Página inicial (`inicio.html`) substituída pela página "Avança SP" (SingleFile). Botão "Inscrição Online" → `/termos.html`. Todos os links externos (menu, área candidato, PDFs, proseleta) neutralizados para `#`.
+- Cabeçalho e rodapé padrão Avança SP aplicados em TODAS as páginas do fluxo (`termos, dados-inscricao, inscricao, confirmacao, pagamento-pix, inscricao-realizada`), substituindo o header/footer Cebraspe (wrappers `__cebraspe_topbar_root`/`__cebraspe_footer_root`). Classes isoladas `av-*` para não colidir com CSS existente. Logo salvo em `/app/frontend/public/avanca-logo.jpg`.
+- Títulos (`<title>`) das 6 páginas atualizados para "… | Avança SP".
+- Script: `/app/scripts/apply_avanca_headerfooter.py`.
+- PENDENTE (não solicitado ainda): conteúdo do corpo das páginas ainda menciona "SEAP-MA / Secretaria de Administração Penitenciária do Maranhão" — precisa migrar para contexto Prefeitura de Limeira quando o usuário pedir.
