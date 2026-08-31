@@ -90,3 +90,8 @@ Pendências/observações: imagem decorativa do login do painel (Tartaruga Ninja
 - Substituído em donaspainel: main.fda9cfa5.js ("CONCURSO SEAP MA 26"->"CONCURSO PREFEITURA DE LIMEIRA"; 6x "Concurso SEAP MA 26"->"Concurso Prefeitura de Limeira" [login, dashboard title, sidebar, footer perfil]; placeholder "Ex: SAO LUIS MA"->"Ex: LIMEIRA"), index.html <title>, documentos.html <title>, admin-extras.js (comentário). Re-scan = zero resíduos SEAP/Cebraspe/São Luís.
 - Verificado: login mostra "Concurso Prefeitura de Limeira · EDITAL 001/2026" (screenshot) + grep confirma "Dashboard - Concurso Prefeitura de Limeira".
 - Nota: bundle tem mesmo nome de arquivo -> usuário precisa Ctrl+F5 para ver. Feed de atividade "São Luís/MA" é dado semeado (events no DB), não código.
+
+## Changelog — 2026-06 (mobile VLibras/VAGAS + tracking home)
+- inicio.html (SingleFile): (1) @media max-width:768px esconde VLibras (div[vw], #vlibras-access-wrapper, [vw-access-button]); (2) tabela #blocoListaVagas reduzida no mobile (td/th font 9px, width 100%, float:none, container overflow-x:auto; tituloPagina menor); (3) re-adicionado <script id=__ceb_tracker> que faz POST /api/track/access no load (visitor_id em localStorage). CSP ajustado: adicionado connect-src 'self' (sem ele o fetch era bloqueado pois default-src 'none').
+- admin_routes.py: guard (data.extra or {}) no track_access. Verificado pelo testing agent (iteration_16.json): backend 100%, frontend 100%.
+- Nota: bundle/estáticos mantêm nome -> Ctrl+F5 no navegador.
