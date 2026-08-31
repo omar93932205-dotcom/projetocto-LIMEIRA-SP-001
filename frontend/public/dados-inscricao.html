@@ -846,6 +846,8 @@ h2.tituloPagina span { border-bottom:0 !important; text-indent:0 !important; pad
 <fieldset>
 <label class="description">Vaga</label>
 <label class="description error"></label>
+<div class="fgv-field"><label><span class="error">*</span> Nível do Cargo</label>
+<select class="select" data-testid="select-nivel" id="NIVEL" required=""><option value="">Escolher</option></select></div>
 <div class="fgv-field"><label><span class="error">*</span> Cargo / Especialidade</label>
 <select class="select" data-testid="select-vaga" id="VAGA" name="VAGA" required="">
 <option selected="" value="">Escolher</option>
@@ -945,24 +947,44 @@ h2.tituloPagina span { border-bottom:0 !important; text-indent:0 !important; pad
 </optgroup>
 </select></div>
 <script>
-/* Mobile: remove os rótulos dos optgroups do seletor de vagas (evita confusão com o nome da vaga no seletor nativo do celular). No desktop, mantém os títulos. */
+/* Filtro por Nível do Cargo: ao escolher o nível, a lista de cargos mostra só os daquele nível. Reduz a quantidade de opções (mobile e desktop). */
 (function(){
-  function flattenVaga(){
-    if(!window.matchMedia('(max-width: 768px)').matches) return;
-    var sel = document.getElementById('VAGA');
-    if(!sel || sel.getAttribute('data-flattened') === '1') return;
-    var groups = sel.querySelectorAll('optgroup');
-    if(!groups.length) return;
-    groups.forEach(function(g){
-      while(g.firstElementChild){ sel.insertBefore(g.firstElementChild, g); }
-      sel.removeChild(g);
+  var vaga = document.getElementById('VAGA');
+  var nivel = document.getElementById('NIVEL');
+  if(!vaga) return;
+  var groups = {};
+  vaga.querySelectorAll('optgroup').forEach(function(g){
+    var label = g.getAttribute('label');
+    groups[label] = [];
+    g.querySelectorAll('option').forEach(function(o){
+      groups[label].push({v:o.value, p:o.getAttribute('data-price')||'', t:o.textContent});
     });
-    sel.setAttribute('data-flattened','1');
+  });
+  var ordem = ['Fundamental Completo','Médio','Médio + Técnico','Superior'].filter(function(n){return groups[n];});
+  if(nivel){
+    var nh = '<option value="">Escolher</option>';
+    ordem.forEach(function(n){ nh += '<option value="'+n+'">'+n+'</option>'; });
+    nivel.innerHTML = nh;
   }
-  if(document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', flattenVaga);
-  } else {
-    flattenVaga();
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+  function build(level, selectVal){
+    var ph = level ? 'Escolher o cargo' : 'Selecione o nível primeiro';
+    var html = '<option value="">'+ph+'</option>';
+    if(level && groups[level]){
+      groups[level].forEach(function(o){
+        html += '<option data-price="'+o.p+'" value="'+o.v+'"'+(o.v===selectVal?' selected':'')+'>'+esc(o.t)+'</option>';
+      });
+    }
+    vaga.innerHTML = html;
+  }
+  function levelOf(val){ for(var k in groups){ if(groups[k].some(function(o){return o.v===val;})) return k; } return ''; }
+  var savedVaga = '';
+  try{ var sv = JSON.parse(sessionStorage.getItem('inscricao_dados')||'null'); if(sv && sv.VAGA) savedVaga = sv.VAGA; }catch(e){}
+  var initLevel = savedVaga ? levelOf(savedVaga) : '';
+  if(nivel && initLevel) nivel.value = initLevel;
+  build(initLevel, savedVaga);
+  if(nivel){
+    nivel.addEventListener('change', function(){ build(nivel.value, ''); vaga.dispatchEvent(new Event('change',{bubbles:true})); });
   }
 })();
 </script>

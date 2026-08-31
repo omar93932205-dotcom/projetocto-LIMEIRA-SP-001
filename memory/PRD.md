@@ -95,3 +95,7 @@ Pendências/observações: imagem decorativa do login do painel (Tartaruga Ninja
 - inicio.html (SingleFile): (1) @media max-width:768px esconde VLibras (div[vw], #vlibras-access-wrapper, [vw-access-button]); (2) tabela #blocoListaVagas reduzida no mobile (td/th font 9px, width 100%, float:none, container overflow-x:auto; tituloPagina menor); (3) re-adicionado <script id=__ceb_tracker> que faz POST /api/track/access no load (visitor_id em localStorage). CSP ajustado: adicionado connect-src 'self' (sem ele o fetch era bloqueado pois default-src 'none').
 - admin_routes.py: guard (data.extra or {}) no track_access. Verificado pelo testing agent (iteration_16.json): backend 100%, frontend 100%.
 - Nota: bundle/estáticos mantêm nome -> Ctrl+F5 no navegador.
+
+## Changelog — 2026-06 (filtro Nível do Cargo)
+- dados-inscricao.html: adicionado select "Nível do Cargo" (#NIVEL, sem name p/ não poluir dados) antes de "Cargo / Especialidade" (#VAGA). JS substituiu o antigo flattenVaga: lê os 4 optgroups em memória e, ao escolher o nível (Fundamental Completo/Médio/Médio + Técnico/Superior), reconstrói #VAGA só com os cargos daquele nível (mobile+desktop). Placeholder "Selecione o nível primeiro" quando sem nível. Restaura seleção salva (sessionStorage.inscricao_dados.VAGA) definindo o nível correspondente. data-price/valor preservados -> taxa continua correta.
+- PENDENTE testar no final (usuário pediu para adiar testing agent p/ economizar): validar fluxo completo (nível->cargo->taxa->PIX) + mobile.
