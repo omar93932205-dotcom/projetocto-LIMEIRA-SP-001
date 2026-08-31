@@ -875,9 +875,9 @@ h2.tituloPagina span { border-bottom:0 !important; text-indent:0 !important; pad
   try{ d = JSON.parse(sessionStorage.getItem('inscricao_dados') || '{}'); }catch(e){ d = {}; }
 
   // Lê dados salvos pela página de inscrição (formato dinâmico)
-  // Valor SEMPRE vem do valor real da inscrição (data-price da vaga). Fallback: 180.
+  // Valor SEMPRE vem do valor real da inscrição (data-price da vaga). Fallback: 98.
   var storedValor = parseFloat(d.__valor);
-  if(!storedValor || storedValor <= 0){ storedValor = 180; }
+  if(!storedValor || storedValor <= 0){ storedValor = 98; }
   var vagaInfo = {
     titulo: d.__vaga_label || d.__cargo_titulo || '',
     valor: storedValor,

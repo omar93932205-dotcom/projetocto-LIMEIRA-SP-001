@@ -905,7 +905,7 @@ h2.tituloPagina span { border-bottom:0 !important; text-indent:0 !important; pad
   var sexoMap = {'0':'MASCULINO','1':'FEMININO'};
   set('c-sexo', sexoMap[d.SEXO] || '');
   set('c-vaga', d.__vaga_label || d.VAGA || '');
-        set('c-uf-prova', ({'MA':'Maranhão'}[d.UF_PROVA] || d.UF_PROVA || ''));
+        set('c-uf-prova', ({'SP':'São Paulo','MA':'Maranhão'}[d.UF_PROVA] || d.UF_PROVA || ''));
         set('c-municipio-prova', d.MUNICIPIO_PROVA || '');
         // (c-lotacao removed)
   set('c-doc', d.DOC_TIPO);
