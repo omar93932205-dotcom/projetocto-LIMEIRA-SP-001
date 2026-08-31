@@ -75,3 +75,6 @@ Pendências/observações: imagem decorativa do login do painel (Tartaruga Ninja
 ## Changelog — 2026-06 (alinhamento + limpeza título termos)
 - termos.html: removido h1 redundante "Concurso Público - 01/2026 - Prefeitura Municipal de Limeira" (já aparece no banner). Mantido badge "Termos e Condições" + intro.
 - Alinhamento unificado: banner av-cbanner e conteúdo agora 1140px/padding 30px em todas as 6 páginas. termos.html: `main .container` forçado a 1140/30px (style __align_v1). Verificado por screenshot (termos + dados-inscricao).
+
+## Changelog — 2026-06 (remove duplicidade do concurso no corpo)
+- Removido bloco duplicado do concurso no corpo das páginas (já consta no banner): inscricao/dados/confirmacao = card interno #TopoInformacoes (imagem+dados "Concurso"+título+período) removido mantendo o wrapper (tabela de confirmação intacta). pagamento-pix/inscricao-realizada = removido <h2> subtítulo (recibo do PIX preservado com o nome do concurso). Script: /app/scripts/remove_concurso_dup.py. Verificado por screenshot (inscricao.html).
