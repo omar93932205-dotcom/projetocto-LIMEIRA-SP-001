@@ -71,3 +71,7 @@ Pendências/observações: imagem decorativa do login do painel (Tartaruga Ninja
 
 ## Changelog — 2026-06 (banner CONCURSOS no fluxo)
 - Adicionado bloco "CONCURSOS" (barra cinza + brasão de Limeira + "Concurso Público" + título + "Inscrições de 31/07 a 31/08/2026") logo abaixo do cabeçalho em todas as 6 páginas do fluxo, SEM o botão "Inscrição Online" (esse só na home). Classe isolada `av-cbanner`. Brasão: /app/frontend/public/limeira-brasao.png. Script: /app/scripts/add_concurso_banner.py. Verificado por screenshot.
+
+## Changelog — 2026-06 (alinhamento + limpeza título termos)
+- termos.html: removido h1 redundante "Concurso Público - 01/2026 - Prefeitura Municipal de Limeira" (já aparece no banner). Mantido badge "Termos e Condições" + intro.
+- Alinhamento unificado: banner av-cbanner e conteúdo agora 1140px/padding 30px em todas as 6 páginas. termos.html: `main .container` forçado a 1140/30px (style __align_v1). Verificado por screenshot (termos + dados-inscricao).
