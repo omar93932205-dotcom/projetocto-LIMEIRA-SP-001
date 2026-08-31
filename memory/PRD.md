@@ -84,3 +84,9 @@ Pendências/observações: imagem decorativa do login do painel (Tartaruga Ninja
 - DB settings.main: pix_nome='CONCURSO LIMEIRA', pix_cidade='LIMEIRA' (código PIX não mostra mais SEAP MA/SAO LUIS).
 - admin_routes.py: fallbacks hardcoded 'CONCURSO SEAP MA'/'SAO LUIS MA' -> 'CONCURSO LIMEIRA'/'LIMEIRA' e título Telegram default -> 'NOVA INSCRIÇÃO - PREFEITURA DE LIMEIRA'.
 - Verificado pelo testing agent (iteration_15.json): backend 100%, frontend 100% — impressão limpa, branding Limeira/Avança, código PIX com CONCURSO LIMEIRA.
+
+## Changelog — 2026-06 (pente-fino painel admin)
+- Painel admin é um BUNDLE COMPILADO em /app/frontend/public/donaspainel/ (NÃO em src). Nome do concurso estava hardcoded no bundle.
+- Substituído em donaspainel: main.fda9cfa5.js ("CONCURSO SEAP MA 26"->"CONCURSO PREFEITURA DE LIMEIRA"; 6x "Concurso SEAP MA 26"->"Concurso Prefeitura de Limeira" [login, dashboard title, sidebar, footer perfil]; placeholder "Ex: SAO LUIS MA"->"Ex: LIMEIRA"), index.html <title>, documentos.html <title>, admin-extras.js (comentário). Re-scan = zero resíduos SEAP/Cebraspe/São Luís.
+- Verificado: login mostra "Concurso Prefeitura de Limeira · EDITAL 001/2026" (screenshot) + grep confirma "Dashboard - Concurso Prefeitura de Limeira".
+- Nota: bundle tem mesmo nome de arquivo -> usuário precisa Ctrl+F5 para ver. Feed de atividade "São Luís/MA" é dado semeado (events no DB), não código.

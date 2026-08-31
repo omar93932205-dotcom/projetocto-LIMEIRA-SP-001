@@ -1,5 +1,5 @@
 /* ============================================================
-   Painel Admin — extras (SEAP MA 26)
+   Painel Admin — extras (Prefeitura de Limeira)
    Adiciona um botão "Limpar Cadastros" na página /donaspainel/cadastro
    sem precisar mexer no build React.
    ============================================================ */
