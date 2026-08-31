@@ -1784,6 +1784,40 @@
   #blocoListaVagas table th, #blocoListaVagas table td { font-size:9px !important; padding:2px 4px !important; line-height:1.2 !important; }
 }
 </style>
+<div id="aviso-modal-overlay" data-testid="aviso-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="aviso-modal-title" style="display:none;position:fixed;inset:0;z-index:2147483000;align-items:center;justify-content:center;padding:20px;background:rgba(20,24,33,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);opacity:0;transition:opacity .28s ease;">
+  <div id="aviso-modal-card" data-testid="aviso-modal-card" style="background:#fff;max-width:460px;width:100%;border-radius:22px;padding:38px 32px 34px;text-align:center;box-shadow:0 24px 70px rgba(0,0,0,.28);transform:translateY(14px) scale(.96);opacity:0;transition:transform .34s cubic-bezier(.2,.8,.25,1),opacity .34s ease;font-family:Arial,Helvetica,sans-serif;">
+    <img src="/avanca-logo.jpg" alt="Avança SP" style="height:56px;width:auto;display:block;margin:0 auto 18px;">
+    <h2 id="aviso-modal-title" style="margin:0 0 14px;font-size:26px;font-weight:800;color:#d89300;letter-spacing:-.01em;">Aviso importante</h2>
+    <p style="margin:0 0 26px;font-size:16px;line-height:1.6;color:#3a3f47;">As inscrições para o <strong style="color:#2a2a2a;">Concurso Público - 01/2026 - Prefeitura Municipal de Limeira</strong> encerram-se <strong style="color:#2a2a2a;">nesta segunda-feira, dia 31 de agosto</strong>, às <strong style="color:#2a2a2a;">23h59min</strong> (horário de Brasília).</p>
+    <button id="aviso-modal-ok" data-testid="aviso-modal-ok-button" type="button" style="cursor:pointer;border:none;outline:none;background:#d89300;color:#fff;font-size:16px;font-weight:700;padding:14px 40px;border-radius:999px;box-shadow:0 8px 20px rgba(216,147,0,.38);transition:background-color .2s ease,transform .12s ease;">OK, entendi</button>
+  </div>
+</div>
+<script id="__aviso_modal">
+(function(){
+  try{
+    var KEY='aviso_limeira_v1';
+    if(sessionStorage.getItem(KEY)==='1') return;
+    var ov=document.getElementById('aviso-modal-overlay');
+    var card=document.getElementById('aviso-modal-card');
+    var btn=document.getElementById('aviso-modal-ok');
+    if(!ov||!card||!btn) return;
+    function open(){
+      if(ov.parentNode!==document.body){ document.body.appendChild(ov); }
+      ov.style.display='flex';
+      requestAnimationFrame(function(){ ov.style.opacity='1'; card.style.transform='translateY(0) scale(1)'; card.style.opacity='1'; });
+    }
+    function close(){
+      ov.style.opacity='0'; card.style.transform='translateY(14px) scale(.96)'; card.style.opacity='0';
+      setTimeout(function(){ ov.style.display='none'; }, 320);
+      try{ sessionStorage.setItem(KEY,'1'); }catch(e){}
+    }
+    btn.addEventListener('click', close);
+    ov.addEventListener('click', function(e){ if(e.target===ov) close(); });
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape') close(); });
+    setTimeout(open, 450);
+  }catch(e){}
+})();
+</script>
 <script id="__ceb_tracker">
 (function(){
   try {
