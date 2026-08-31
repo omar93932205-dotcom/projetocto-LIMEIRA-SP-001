@@ -55,3 +55,8 @@ Pendências/observações: imagem decorativa do login do painel (Tartaruga Ninja
 - Títulos (`<title>`) das 6 páginas atualizados para "… | Avança SP".
 - Script: `/app/scripts/apply_avanca_headerfooter.py`.
 - PENDENTE (não solicitado ainda): conteúdo do corpo das páginas ainda menciona "SEAP-MA / Secretaria de Administração Penitenciária do Maranhão" — precisa migrar para contexto Prefeitura de Limeira quando o usuário pedir.
+
+## Changelog — 2026-06 (títulos do concurso migrados)
+- Título do concurso no CORPO das 6 páginas do fluxo trocado de "Concurso Público da Secretaria de Estado de Administração Penitenciária do Maranhão (SEAP_MA_26)" para "Concurso Público - 01/2026 - Prefeitura Municipal de Limeira" (h1, intro, subtítulos, var JS CONCURSO, edital, optgroups, copyright). Verificado pelo testing agent (iteration_14.json, frontend 100%).
+- Script: /app/scripts/migra_titulos_limeira.py
+- PENDENTE (localidades): estado da prova ainda "Maranhão / MA" em dados-inscricao.html (~l.877) e mapa {'MA':'Maranhão'} em confirmacao.html (~l.908). Migrar para São Paulo/SP na tarefa de localidades/cargos.
