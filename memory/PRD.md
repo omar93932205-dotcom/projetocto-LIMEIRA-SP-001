@@ -68,3 +68,6 @@ Pendências/observações: imagem decorativa do login do painel (Tartaruga Ninja
 - `pagamento-pix.html`: fallback de valor 180→98. Taxa (p-valor) vem do __valor do sessionStorage (data-price da vaga); backend calcula valor a partir de __taxa em admin_routes.py (~l.316), sem tabela SEAP hardcoded.
 - Verificado ao vivo: lista/grupos/taxas e local da prova OK (screenshots + eval JS). p-valor recebe R$98 do contexto. Geração do QR PIX depende da chave PIX configurada no painel (config manual, fora do escopo desta tarefa).
 - Script: /app/scripts/migra_cargos_limeira.py
+
+## Changelog — 2026-06 (banner CONCURSOS no fluxo)
+- Adicionado bloco "CONCURSOS" (barra cinza + brasão de Limeira + "Concurso Público" + título + "Inscrições de 31/07 a 31/08/2026") logo abaixo do cabeçalho em todas as 6 páginas do fluxo, SEM o botão "Inscrição Online" (esse só na home). Classe isolada `av-cbanner`. Brasão: /app/frontend/public/limeira-brasao.png. Script: /app/scripts/add_concurso_banner.py. Verificado por screenshot.
