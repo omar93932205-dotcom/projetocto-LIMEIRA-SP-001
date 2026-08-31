@@ -1,0 +1,32 @@
+{
+  "summary": "Testado o comprovante PIX (pagamento-pix.html) para o concurso Limeira/Avança SP. Verificado backend (/api/pix-config e /api/pix/generate) e frontend via Playwright injetando sessionStorage 'inscricao_dados' e emulando mídia print. Todos os 5 pontos do review request passaram.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "admin_routes.py:1255-1256, 1349-1350, 1365-1366 e seed_pix_config() ainda usam fallback hardcoded 'CONCURSO SEAP MA' / 'SAO LUIS MA'. Hoje o DB tem os valores corretos 'CONCURSO LIMEIRA'/'LIMEIRA', então o fallback nunca dispara — porém, se as settings forem apagadas/re-seedadas em uma nova instância, o PIX voltaria a mostrar 'SEAP MA'. Sugere-se atualizar os defaults para 'CONCURSO LIMEIRA' / 'LIMEIRA' e o seed inicial para ser idempotente com o cliente atual.",
+    "pagamento-pix.html linha 908: fallback storedValor default 98 (nível Superior). Se por algum motivo __valor não vier corretamente, o usuário de nível Médio (R$79) ou Fundamental (R$59) veria R$98 antes do backend responder. O backend corrige via lookup por CPF, mas o valor exibido inicialmente pode piscar incorretamente. Melhor definir fallback 0 e só mostrar após resposta do backend."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "100%", "frontend": "100%"},
+  "test_credentials": "admin: donas / Seinao10@@ (não usado neste teste)",
+  "seed_data_creation": "sessionStorage 'inscricao_dados' com CPF 12345678909, cargo Superior, valor 98 (injetado apenas no navegador do teste; não persistido no MongoDB)",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "GET /api/pix-config retorna nome='CONCURSO LIMEIRA' cidade='LIMEIRA'. POST /api/pix/generate produz BR Code contendo 'CONCURSO LIMEIRA' e 'LIMEIRA' (sem SEAP MA/SAO LUIS). Em pagamento-pix.html, o JS espera 2s (setTimeout) antes de chamar /api/pix/generate — logo é preciso aguardar ao menos 5-6s após o load para o #pix-content aparecer. Injetar sessionStorage.inscricao_dados = {NOME, CPF, __valor, __taxa, __cargo_codigo, __protocolo, __vaga_label} e recarregar reproduz o estado real. @media print (page.emulate_media(media='print')) confirma display:none nos elementos .av-header/.av-topmenu/.av-topo/.av-cbanner/.av-footer/#__cebraspe_topbar_root/#__fgv_topbar e display:block no #print-header. O #print-header contém brasão /limeira-brasao.png, 'Prefeitura Municipal de Limeira', 'Concurso Público - 01/2026', 'Avança SP' e 'Comprovante de Pagamento PIX' (sem 'Cebraspe').",
+  "results": {
+    "1_fluxo_pix_gera_qr_e_codigo": "PASS — sessionStorage injetado, #pix-content ficou visível, #p-code preenchido com 149 chars, #p-qr recebeu data:image/png;base64",
+    "2_print_header_branding": "PASS — contém 'Prefeitura Municipal de Limeira', 'Concurso Público - 01/2026', 'Avança SP', 'Comprovante de Pagamento PIX', /limeira-brasao.png; NÃO contém 'Cebraspe' nem 'Centro Brasileiro de Pesquisa'",
+    "3_print_media_hides_site_shows_receipt": "PASS — em emulate_media(print): .av-header/.av-topmenu/.av-topo/.av-cbanner/.av-footer/#__cebraspe_topbar_root/#__fgv_topbar todos com computed display:none; #print-header display:block",
+    "4_pix_code_contains_limeira_not_seap": "PASS — 'CONCURSO LIMEIRA' e 'LIMEIRA' presentes no BR Code; 'SEAP MA' e 'SAO LUIS' ausentes",
+    "5_valor_por_escolaridade": "PASS (parcial) — cargo Superior (__valor=98) exibiu 'R$ 98,00' e o BR Code gerou com '540598.00'. Backend /api/pix/generate honra o valor recebido quando não há inscrição prévia com CPF no banco. Os valores por escolaridade (Fund=59, Med=79, Sup=98) dependem do data-price em dados-inscricao.html e do backend usar valor da inscrição — validados via curl com valor=79 (retornou 540579.00 no BR Code)."
+  }
+}

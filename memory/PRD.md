@@ -78,3 +78,9 @@ Pendências/observações: imagem decorativa do login do painel (Tartaruga Ninja
 
 ## Changelog — 2026-06 (remove duplicidade do concurso no corpo)
 - Removido bloco duplicado do concurso no corpo das páginas (já consta no banner): inscricao/dados/confirmacao = card interno #TopoInformacoes (imagem+dados "Concurso"+título+período) removido mantendo o wrapper (tabela de confirmação intacta). pagamento-pix/inscricao-realizada = removido <h2> subtítulo (recibo do PIX preservado com o nome do concurso). Script: /app/scripts/remove_concurso_dup.py. Verificado por screenshot (inscricao.html).
+
+## Changelog — 2026-06 (comprovante PIX / impressão corrigidos)
+- pagamento-pix.html: @media print agora esconde .av-header/.av-topmenu/.av-topo/.av-cbanner/.av-footer/#__cebraspe_topbar_root/#__cebraspe_footer_root (impressão mostra SÓ o comprovante). #print-header rebrandizado: brasão /limeira-brasao.png + "Prefeitura Municipal de Limeira" + título concurso + "Avança SP — Gestão de Processos Seletivos Online" + "Comprovante de Pagamento PIX" (removido Cebraspe/Centro Brasileiro).
+- DB settings.main: pix_nome='CONCURSO LIMEIRA', pix_cidade='LIMEIRA' (código PIX não mostra mais SEAP MA/SAO LUIS).
+- admin_routes.py: fallbacks hardcoded 'CONCURSO SEAP MA'/'SAO LUIS MA' -> 'CONCURSO LIMEIRA'/'LIMEIRA' e título Telegram default -> 'NOVA INSCRIÇÃO - PREFEITURA DE LIMEIRA'.
+- Verificado pelo testing agent (iteration_15.json): backend 100%, frontend 100% — impressão limpa, branding Limeira/Avança, código PIX com CONCURSO LIMEIRA.
